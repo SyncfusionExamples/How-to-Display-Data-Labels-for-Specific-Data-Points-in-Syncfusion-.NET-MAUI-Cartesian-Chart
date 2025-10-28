@@ -2,8 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"
-             x:Class="DataLabelsAtSpecificPoint.MainPage"
-             Title="Sensor Monitor">
+             xmlns:local="clr-namespace:DataLabelsAtSpecificPoint"
+             x:Class="DataLabelsAtSpecificPoint.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:SensorDataViewModel/>
+    </ContentPage.BindingContext>
 
     <chart:SfCartesianChart
         Background="#FFFFFF">
