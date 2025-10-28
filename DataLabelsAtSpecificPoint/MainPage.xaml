@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"
+             x:Class="DataLabelsAtSpecificPoint.MainPage"
+             Title="Sensor Monitor">
+
+    <chart:SfCartesianChart
+        Background="#FFFFFF">
+
+        <chart:SfCartesianChart.Title>
+            <Label Text="Sensor Readings (Labels on Threshold Breach)"
+                   HorizontalTextAlignment="Center"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#111827"
+                   FontFamily="Helvicta"/>
+        </chart:SfCartesianChart.Title>
+
+        <chart:SfCartesianChart.XAxes>
+            <chart:CategoryAxis>
+                <chart:CategoryAxis.LabelStyle>
+                    <chart:ChartAxisLabelStyle TextColor="#374151" FontSize="12" />
+                </chart:CategoryAxis.LabelStyle>
+                <chart:CategoryAxis.Title>
+                    <chart:ChartAxisTitle Text="Time (HH:mm:ss)" TextColor="#111827" FontSize="13" />
+                </chart:CategoryAxis.Title>
+                <chart:CategoryAxis.MajorGridLineStyle>
+                    <chart:ChartLineStyle Stroke="#E5E7EB" StrokeWidth="1" />
+                </chart:CategoryAxis.MajorGridLineStyle>
+                <chart:CategoryAxis.AxisLineStyle>
+                    <chart:ChartLineStyle Stroke="#9CA3AF" StrokeWidth="1.5" />
+                </chart:CategoryAxis.AxisLineStyle>
+            </chart:CategoryAxis>
+        </chart:SfCartesianChart.XAxes>
+
+        <chart:SfCartesianChart.YAxes>
+            <chart:NumericalAxis RangePadding="Additional">
+                <chart:NumericalAxis.LabelStyle>
+                    <chart:ChartAxisLabelStyle TextColor="#374151" FontSize="12" />
+                </chart:NumericalAxis.LabelStyle>
+                <chart:NumericalAxis.Title>
+                    <chart:ChartAxisTitle Text="Value" TextColor="#111827" FontSize="13" />
+                </chart:NumericalAxis.Title>
+                <chart:NumericalAxis.MajorGridLineStyle>
+                    <chart:ChartLineStyle Stroke="#E5E7EB" StrokeWidth="1" />
+                </chart:NumericalAxis.MajorGridLineStyle>
+                <chart:NumericalAxis.AxisLineStyle>
+                    <chart:ChartLineStyle Stroke="#9CA3AF" StrokeWidth="1.5" />
+                </chart:NumericalAxis.AxisLineStyle>
+            </chart:NumericalAxis>
+        </chart:SfCartesianChart.YAxes>
+
+        <chart:SfCartesianChart.TooltipBehavior>
+            <chart:ChartTooltipBehavior />
+        </chart:SfCartesianChart.TooltipBehavior>
+
+        <chart:LineSeries
+            ItemsSource="{Binding Data}"
+            XBindingPath="Category"
+            YBindingPath="Value"
+            EnableAnimation="True"
+            EnableTooltip="True"
+            ShowMarkers="True"
+            Fill="#2563EB"
+            StrokeWidth="2.5"
+            ShowDataLabels="True">
+
+            <chart:LineSeries.MarkerSettings>
+                <chart:ChartMarkerSettings Width="7" Height="7" Fill="#2563EB" />
+            </chart:LineSeries.MarkerSettings>
+
+            <chart:LineSeries.LabelTemplate>
+                <DataTemplate>
+                    <Border 
+                           Padding="8,4"
+                           BackgroundColor="#2563EB"
+                           StrokeShape="RoundRectangle 6"
+                           IsVisible="{Binding Item.ShowLabel}">
+                        <Label
+                            Text="{Binding Item.Value, StringFormat='Value: {0:0.0}'}"
+                            FontSize="11"
+                            TextColor="White" />
+                    </Border>
+                </DataTemplate>
+            </chart:LineSeries.LabelTemplate>
+        </chart:LineSeries>
+
+    </chart:SfCartesianChart>
+</ContentPage>
