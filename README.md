@@ -26,6 +26,8 @@ This sample demonstrates how to show data labels only for selected data points i
 
 ## Output:
 
+<img width="1919" height="926" alt="Screenshot 2025-10-27 174441" src="https://github.com/user-attachments/assets/9681ab22-c607-47b9-b408-1515c38e3d2f" />
+
 ## Troubleshooting
 If you are facing a path too long exception when building this example project, close Visual Studio and rename the repository to short and build the project.
 
